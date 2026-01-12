@@ -1,0 +1,272 @@
+<style>
+  /* ================= NAVBAR BASE ================= */
+  .navbar {
+    min-height: 5rem;
+    background-color: #ffffff;
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar-brand i {
+    color: #fe424d;
+  }
+
+  /* ================= SEARCH ================= */
+  .search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .search-inp {
+    border-radius: 999px;
+    padding: 0.5rem 1.4rem;
+    font-size: 0.95rem;
+    width: 320px;
+    transition: all 0.2s ease;
+    border: 1px solid #dee2e6;
+  }
+
+  .search-inp:focus {
+    box-shadow: 0 0 0 2px rgba(254, 66, 77, 0.15);
+    border-color: #fe424d;
+    outline: none;
+  }
+
+  .search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.5rem 1.3rem;
+    white-space: nowrap;
+    border: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .search-btn:hover {
+    background-color: #e63b45;
+    color: #fff;
+  }
+
+  /* ================= NAV LINKS ================= */
+  .navbar-nav {
+    align-items: center;
+  }
+
+  .nav-link {
+    font-weight: 500;
+    color: #222 !important;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ================= RESPONSIVE ================= */
+
+  /* Large Desktop (1200px and up) */
+  @media (min-width: 1200px) {
+    .navbar {
+      padding: 0.75rem 2rem;
+    }
+  }
+
+  /* Tablets and Medium Devices (768px to 991px) */
+  @media (max-width: 991px) {
+    .navbar {
+      min-height: 4.5rem;
+    }
+
+    .search-inp {
+      width: 240px;
+      font-size: 0.9rem;
+      padding: 0.45rem 1.2rem;
+    }
+
+    .search-btn {
+      padding: 0.45rem 1.1rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-link {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Mobile Landscape and Small Tablets (576px to 767px) */
+  @media (max-width: 767px) {
+    .navbar {
+      min-height: 4rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .navbar-collapse {
+      padding-top: 1rem;
+    }
+
+    .navbar-nav {
+      align-items: stretch;
+    }
+
+    .search-form {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      margin: 1rem 0;
+      gap: 0.75rem;
+    }
+
+    .search-inp {
+      width: 100%;
+      padding: 0.6rem 1.2rem;
+    }
+
+    .search-btn {
+      width: 100%;
+      padding: 0.6rem 1.2rem;
+    }
+
+    .nav-link {
+      text-align: center;
+      padding: 0.6rem 1rem;
+    }
+
+    .navbar-brand {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Mobile Portrait (475px to 575px) */
+  @media (max-width: 575px) {
+    .navbar {
+      padding: 0.5rem 0.75rem;
+    }
+
+    .search-inp {
+      font-size: 0.9rem;
+      padding: 0.55rem 1rem;
+    }
+
+    .search-btn {
+      font-size: 0.9rem;
+      padding: 0.55rem 1rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Small Mobile (up to 474px) */
+  @media (max-width: 474px) {
+    .navbar {
+      min-height: 3.5rem;
+      padding: 0.4rem 0.5rem;
+    }
+
+    .navbar-brand i {
+      font-size: 1.2rem;
+    }
+
+    .navbar-toggler {
+      padding: 0.25rem 0.5rem;
+      font-size: 1rem;
+    }
+
+    .search-inp {
+      font-size: 0.85rem;
+      padding: 0.5rem 0.9rem;
+    }
+
+    .search-btn {
+      font-size: 0.85rem;
+      padding: 0.5rem 0.9rem;
+    }
+
+    .search-btn i {
+      display: none;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      padding: 0.55rem 0.75rem;
+    }
+  }
+
+  /* Extra Small Mobile (up to 374px) */
+  @media (max-width: 374px) {
+    .navbar {
+      padding: 0.3rem 0.4rem;
+    }
+
+    .navbar-brand i {
+      font-size: 1.1rem;
+    }
+
+    .search-inp,
+    .search-btn {
+      font-size: 0.8rem;
+      padding: 0.45rem 0.8rem;
+    }
+
+    .nav-link {
+      font-size: 0.85rem;
+      padding: 0.5rem 0.6rem;
+    }
+  }
+</style>
+
+<nav class="navbar navbar-expand-md border-bottom sticky-top">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass fs-4"></i>
+    </a>
+
+    <!-- Toggle -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Content -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- Left -->
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <!-- Search -->
+      <form class="search-form mx-auto" role="search">
+        <input
+          class="form-control search-inp"
+          type="search"
+          placeholder="Search destination"
+          aria-label="Search"
+        />
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass me-1"></i>Search
+        </button>
+      </form>
+
+      <!-- Right -->
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <% if (!currUser) { %>
+          <a class="nav-link fw-bold" href="/signup">Sign up</a>
+          <a class="nav-link fw-bold" href="/login">Log in</a>
+        <% } else { %>
+          <a class="nav-link fw-bold" href="/logout">Log out</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
