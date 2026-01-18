@@ -12,6 +12,9 @@
     margin-right: 2rem;
     margin-top: 2rem;
     opacity: 0.7;
+    padding-left: 0.15rem;
+    text-decoration: none;
+    color: inherit;
   }
 
   .filter:hover {
@@ -32,57 +35,54 @@
     border-radius: 1rem;
     height: 3rem;
     padding: 1rem;
-    margin-left: 2rem;
+    margin-left: 5rem;
+    margin-top: 1rem;
     display: flex;
     align-items: center;
   }
 </style>
 
 <div id="filters">
-  <div class="filter">
+  <a href="/listings?category=trending" class="filter">
     <div><i class="fa-solid fa-fire"></i></div>
     <p>Trending</p>
-  </div>
-  <div class="filter">
+  </a>
+  <a href="/listings?category=rooms" class="filter">
     <div><i class="fa-solid fa-bed"></i></div>
     <p>Rooms</p>
-  </div>
-  <div class="filter">
+  </a>
+  <a href="/listings?category=iconic_cities" class="filter">
     <div><i class="fa-solid fa-mountain-city"></i></div>
     <p>Iconic Cities</p>
-  </div>
-  <div class="filter">
+  </a>
+  <a href="/listings?category=mountains" class="filter">
     <div><i class="fa-solid fa-mountain"></i></div>
     <p>Mountains</p>
-  </div>
-  <div class="filter">
+  </a>
+  <a href="/listings?category=castles" class="filter">
     <div><i class="fa-brands fa-fort-awesome"></i></div>
     <p>Castles</p>
-  </div>
-  <div class="filter revert">
+  </a>
+  <a href="/listings?category=amazing_pools" class="filter revert">
     <div><i class="fa-solid fa-person-swimming"></i></div>
     <p>Amazing Pools</p>
-  </div>
-  <div class="filter">
+  </a>
+  <a href="/listings?category=camping" class="filter">
     <div><i class="fa-solid fa-campground"></i></div>
     <p>Camping</p>
-  </div>
-  <div class="filter">
+  </a>
+  <a href="/listings?category=farms" class="filter">
     <div><i class="fa-solid fa-cow"></i></div>
     <p>Farms</p>
-  </div>
-  <div class="filter">
+  </a>
+  <a href="/listings?category=arctic" class="filter">
     <div><i class="fa-regular fa-snowflake"></i></div>
     <p>Arctic</p>
-  </div>
-  <div class="filter">
+  </a>
+  <a href="/listings?category=domes" class="filter">
     <div><i class="fa-solid fa-igloo"></i></div>
     <p>Domes</p>
-  </div>
-  <div class="filter">
-    <div><i class="fa-solid fa-ferry"></i></div>
-    <p>Boats</p>
-  </div>
+  </a>
 
   <div class="tax-toggle">
     <div class="form-check-reverse form-switch">
@@ -92,13 +92,16 @@
         role="switch"
         id="flexSwitchCheckDefault"
       />
-      <label class="form-check-label" for="switchCheckDefault"
+      <label class="form-check-label" for="flexSwitchCheckDefault"
         >Display total after taxes</label
       >
     </div>
   </div>
 </div>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <% if(allListings.length === 0 ) {%>
+    <p>No results found.</p>
+  <% } %>
   <% for(let listing of allListings) { %>
   <a href="/listings/<%= listing._id %>" class="listing-link">
     <div class="card col listing-card">

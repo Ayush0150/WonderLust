@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-const review = require("./review");
 const Schema = mongoose.Schema;
+const categories = require("../utils/categories");
+
 const Review = require("./review");
 
 const listingSchema = new Schema({
@@ -39,6 +40,12 @@ const listingSchema = new Schema({
       required: true,
     },
   },
+  category: {
+    type: String,
+    required: true,
+    enum: categories.map((c) => c.key),
+    default: "trending"
+  }
 });
 
 listingSchema.post("findOneAndDelete", async (listing) => {

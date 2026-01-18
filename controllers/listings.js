@@ -1,13 +1,32 @@
 const Listing = require("../models/listing");
 const axios = require("axios");
+const categories = require("../utils/categories");
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({});
-  res.render("./listings/index.ejs", { allListings });
+  const { q, category } = req.query;
+
+  let filter = {};
+
+  if (category) {
+    filter.category = category;
+  }
+
+  const search = q?.trim();
+  if (search) {
+    filter.$or = [
+      { title: { $regex: search, $options: "i" } },
+      { location: { $regex: search, $options: "i" } },
+      { country: { $regex: search, $options: "i" } },
+    ];
+  }
+
+  let allListings = await Listing.find(filter);
+
+  res.render("./listings/index.ejs", { allListings, category, q });
 };
 
 module.exports.renderNewForm = (req, res) => {
-  res.render("./listings/new.ejs");
+  res.render("./listings/new.ejs", { categories });
 };
 
 module.exports.showListing = async (req, res) => {
@@ -24,8 +43,7 @@ module.exports.showListing = async (req, res) => {
     req.flash("error", "Listing you requested for does not exist!");
     return res.redirect("/listings");
   }
-  console.log(listing);
-  return res.render("./listings/show.ejs", { listing });
+  return res.render("./listings/show.ejs", { listing, categories });
 };
 
 module.exports.createListing = async (req, res) => {
@@ -56,9 +74,9 @@ module.exports.createListing = async (req, res) => {
   };
 
   let savedListing = await newListing.save();
-  console.log(savedListing);
   req.flash("success", "New Listing Created");
   res.redirect("/listings");
+  console.log(req.user)
 };
 
 module.exports.renderEditForm = async (req, res) => {
@@ -92,7 +110,6 @@ module.exports.updateListing = async (req, res) => {
 module.exports.destroyListing = async (req, res) => {
   let { id } = req.params;
   let deletedListing = await Listing.findByIdAndDelete(id);
-  console.log(deletedListing);
   req.flash("success", "Listing Deleted!");
   res.redirect("/listings");
 };

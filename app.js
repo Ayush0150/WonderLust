@@ -20,7 +20,11 @@ const listingRouter = require("./routes/listing");
 const reviewRouter = require("./routes/review");
 const userRouter = require("./routes/user");
 
-const dbUrl = process.env.ATLASDB_URL;
+const dbUrl =
+  process.env.NODE_ENV === "production"
+    ? process.env.ATLASDB_URL
+    : "mongodb://127.0.0.1:27017/wonderlust";
+
 
 main()
   .then(() => {
@@ -41,8 +45,10 @@ app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+
+// Session Store
+
 const store = MongoStore.create({
-  // client: mongoose.connection.getClient(),
   mongoUrl: dbUrl,
   collectionName: "sessions",
   touchAfter: 24 * 3600,

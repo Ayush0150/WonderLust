@@ -245,12 +245,13 @@
       </div>
 
       <!-- Search -->
-      <form class="search-form mx-auto" role="search">
+      <form class="search-form mx-auto" role="search" method="GET" action="/listings">
         <input
           class="form-control search-inp"
           type="search"
           placeholder="Search destination"
           aria-label="Search"
+          name="q"
         />
         <button class="btn search-btn" type="submit">
           <i class="fa-solid fa-magnifying-glass me-1"></i>Search

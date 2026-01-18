@@ -1,4 +1,5 @@
 <% layout("/layouts/boilerplate") %>
+</style>
 <script>
   const listing = <%- JSON.stringify(listing) %>;
 </script>
@@ -16,9 +17,12 @@
       <p class="card-text">Owned by <i><%= listing.owner.username %></i></p>
 
       <p class="card-text"><%= listing.description %></p>
+      <p class="card-text">Category: <%= categories.find(c => c.key === listing.category)?.label %>
+</p>
       <p class="card-text">
         &#8377; <%= listing.price.toLocaleString("en-IN") %>
       </p>
+
       <p class="card-text"><%= listing.location %></p>
       <p class="card-text"><%= listing.country %></p>
     </div>
@@ -113,6 +117,7 @@
       <button class="btn btn-outline-dark">Submit</button>
     </form>
     <hr />
+
     <% } %> <% if(listing.reviews.length > 0) { %>
     <div class="row">
       <p><b>All Reviews</b></p>
@@ -131,7 +136,9 @@
           method="POST"
           action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
         >
+        <% if(currUser && review.author._id.equals(currUser._id)) {%>
           <button class="btn btn-sm btn-dark">Delete</button>
+          <%  } %>
         </form>
       </div>
       <% } %>

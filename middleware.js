@@ -51,7 +51,7 @@ module.exports.validateReview = (req, res, next) => {
 module.exports.isReviewAuthor = async (req, res, next) => {
   const { id, reviewId } = req.params;
 
-  const review = await Review.findById(reviewId);
+  const review = await Review.findById(reviewId);   
 
   if (!review) {
     req.flash("error", "Review not found");
